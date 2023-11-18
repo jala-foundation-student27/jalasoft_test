@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="todo.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo-List</title>
+</head>
+<body>
+
+    <header>TODO_LIST</header>
+    
+    <div class="task_bar">
+        <form class="form-in" action="https://localhost:5000/todo_list" method="post"> 
+        <div>
+            <label for="task">TodoTask</label>
+            <input name="task" type="text">
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <input name="category" type="text">
+        </div>
+        <div>
+            <label for="status">Status</label>
+            <select name="status" class='filter-todos'>
+                <option value="completed">Completed</option>
+                <option value="overdue">Overdue</option>
+              </select>
+        </div>
+        <div>
+            <label for="description">description</label>
+            <input name="description" type="text">
+        </div>
+        <div>
+            <label for="deadline">deadline</label>
+            <input name="deadline" type="text">
+        </div>
+        <div>
+            <button type="submit">Save</button>
+
+            </form>   
+        </div>
+    </div>
+</body>
+</html>

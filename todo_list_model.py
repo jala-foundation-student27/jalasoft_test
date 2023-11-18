@@ -1,13 +1,12 @@
-from pydantic import BaseModel,ConfigDict,field_validator
+from pydantic import BaseModel,ConfigDict
 from datetime import datetime
-from typing import Optional
 from enum import Enum
 
 class Status(Enum):
     status = "completed"
     overdue = "overdue"
 
-class Todo_list_model(BaseModel):
+class Todo_list_model(BaseModel):  # Model Restricting the types of the fields
     model_config = ConfigDict(extra="forbid") # forbid extra fields in the model
     task:str
     deadline:datetime

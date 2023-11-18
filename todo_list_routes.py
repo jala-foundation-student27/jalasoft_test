@@ -13,17 +13,17 @@ todo_collection = get_todo_collection()
 @todo_bp.route('/todo_list/<id>',methods=["GET"])
 def get(id):
     try:
-        response = todo_collection.find_one({"_id":ObjectId(id)})
+        response = todo_collection.find_one({"_id":ObjectId(id)}) # 404 If object is not found
         response.update({"_id":id})
     except:
         abort(404)
     return jsonify(response)
 
+
 @todo_bp.route('/todo_list',methods=["POST"])
 def post():
-
     try:
-        request_json = request.get_json()
+        request_json = request.get_json() # 400 if request cant be parsed to json (invalid request)
         now = datetime.datetime.now()
         parsed_data = {"task":request_json["task"],
                     "deadline":request_json["deadline"],
@@ -36,8 +36,8 @@ def post():
         insert_response = todo_collection.insert_one(request_json) # Object id cant be casted to json
     except:
         abort(400)
-    request_json.update({"_id":str(request_json["_id"]),"lastUpdated":now})
-    return jsonify(request_json),201,{"location":f"/todo_list/{insert_response.inserted_id}"}
+    request_json.update({"_id":str(request_json["_id"]),"lastUpdated":now}) # conversion of types for returning json
+    return jsonify(request_json),201,{"location":f"/todo_list/{insert_response.inserted_id}"} # header will contain the created  ObjectID
 
 @todo_bp.route('/todo_list/<id>',methods=["PUT"])
 def put(id):
